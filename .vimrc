@@ -48,6 +48,8 @@ endif
 " }}}
 
 set helplang=ja
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
+
 set number
 set cursorline
 syntax enable
@@ -55,4 +57,6 @@ set hlsearch
 set smartindent
 set laststatus=2
 set wildmenu
+set tabstop=4
+set mouse=a
 
