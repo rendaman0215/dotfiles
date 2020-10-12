@@ -4,4 +4,3 @@ repo = 'vim-jp/vimdoc-ja'
 [[plugins]]
 repo = 'scrooloose/nerdtree'
 
-
