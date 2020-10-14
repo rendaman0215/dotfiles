@@ -7,7 +7,6 @@ brew install cask
 brew install git  
 brew install pyenv  
 brew install rbenv  
-brew install openssl  
 brew install docker  
 brew install docker-compose  
 
