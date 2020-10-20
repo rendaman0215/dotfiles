@@ -58,6 +58,5 @@ set smartindent
 set laststatus=2
 set wildmenu
 set tabstop=4
-set mouse=a
 
 
