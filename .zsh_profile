@@ -2,7 +2,7 @@
 source ~/.zshrc
 
 # bash completion
-source <(kubectl completion bash)
+source <(kubectl completion zsh)
 
 # SSH settings
 ## alias awscon='ssh -i ~/Desktop/key.pem centos@18.178.37.117'
