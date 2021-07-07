@@ -1,12 +1,16 @@
 # load bashrc
-source ~/.bashrc
+source ~/.zshrc
 
 # bash completion
-source <(kubectl completion bash)
+# source <(kubectl completion zsh)
 
 # SSH settings
-## alias awscon='ssh -i ~/Desktop/key.pem centos@18.178.37.117'
 export PATH=/usr/local/opt/openssl/bin:$PATH
+
+# GO
+export PATH="/usr/local/opt/go@1.13/bin:$PATH"
+export GOPATH=$(go env GOPATH)
+export PATH=$PATH:$GOPATH/bin
 
 # rbenv settings
 eval "$(rbenv init -)"
