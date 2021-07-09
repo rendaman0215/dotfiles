@@ -1,3 +1,38 @@
+" ------------------------Common------------------------ "
+set nocompatible
+
+"タイトルをバッファ名に変更しない
+set notitle
+set shortmess+=I
+
+"ターミナル接続を高速にする
+set ttyfast
+
+"ターミナルで256色表示を使う
+set t_Co=256
+
+"Tabをスペース4つに展開＆Tabの設定
+set tabstop=4
+set autoindent
+set smartindent
+set expandtab
+set shiftwidth=4
+
+"行番号を表示
+set number
+
+"ステータス行の表示
+set laststatus=2
+
+"下線表示
+set cursorline
+syntax enable
+set hlsearch
+set smartindent
+
+set wildmenu
+
+
 " dein.vim settings {{{
 " install dir {{{
 let s:dein_dir = expand('~/.cache/dein')
@@ -50,13 +85,5 @@ endif
 set helplang=ja
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
-set number
-set cursorline
-syntax enable
-set hlsearch
-set smartindent
-set laststatus=2
-set wildmenu
-set tabstop=4
 
 

@@ -1,17 +1,10 @@
-# load bashrc
-source ~/.zshrc
+# load zshrc
+if [ -f ~/.zshrc ]; then
+	source ~/.zshrc
+fi
 
 # bash completion
 source <(kubectl completion zsh)
 
 # SSH settings
-## alias awscon='ssh -i ~/Desktop/key.pem centos@18.178.37.117'
 export PATH=/usr/local/opt/openssl/bin:$PATH
-
-# rbenv settings
-eval "$(rbenv init -)"
-
-# pyenv settings
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"

@@ -1,0 +1,20 @@
+[user]
+	name = Kazuya Saso
+	email = kazsan0215@gmail.com
+[color]
+	ui = auto
+[alias]
+	co = checkout
+	br = branch
+	cm = commit -m
+	st = status
+	ps = push
+	pl = pull
+	df = diff
+	ad = add
+	gr = grep
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+[diff]
+	compactionHeuristic = true
+[ghq]
+	root = ~/go/src
