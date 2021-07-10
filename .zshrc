@@ -18,10 +18,11 @@ if [ -e /usr/local/share/zsh-completions ]; then
     fpath=(/usr/local/share/zsh-completions $fpath)
 fi
 
-
 # ------------------------------
 # PATH Settings
 # ------------------------------
+export PATH="/usr/local/Cellar/go@1.13/1.13.15/libexec/bin:$PATH"
+
 if [ -d ~/.rbenv ]; then
     export PATH="$HOME/.rbenv/bin:$PATH"
     eval "$(rbenv init -)"
