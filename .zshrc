@@ -116,3 +116,8 @@ alias kg='kubectl get'
 alias kd='kubectl describe'
 alias krm='kubectl delete'
 
+# oracle
+export ORACLE_HOME=/opt/oracle/instantclient_12_2/
+export PKG_CONFIG_PATH=${ORACLE_HOME}pkgconfig/
+export LD_LIBRARY_PATH=$ORACLE_HOME
+
