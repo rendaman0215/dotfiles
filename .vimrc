@@ -93,9 +93,6 @@ set number
 set clipboard=unnamed,autoselect
 " Escの2回押しでハイライト消去
 nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
-" シンタックスハイライト
-syntax enable
-syntax on
 " すべての数を10進数として扱う
 set nrformats=
 " 行をまたいで移動
@@ -158,5 +155,6 @@ endif
 set helplang=ja
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
-
-
+" シンタックスハイライト（deinの後ろにもってくる必要あり
+syntax enable
+syntax on
