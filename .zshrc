@@ -121,3 +121,5 @@ export ORACLE_HOME=/opt/oracle/instantclient_12_2/
 export PKG_CONFIG_PATH=${ORACLE_HOME}pkgconfig/
 export LD_LIBRARY_PATH=$ORACLE_HOME
 
+# terraform
+alias tera='terraform'
