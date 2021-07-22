@@ -157,3 +157,9 @@ alias tfdy='terraform destroy -auto-approve'
 alias tfinu='terraform init -upgrade'
 alias tfpde='terraform plan --destroy'
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/rendaman/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/rendaman/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/rendaman/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/rendaman/google-cloud-sdk/completion.zsh.inc'; fi
