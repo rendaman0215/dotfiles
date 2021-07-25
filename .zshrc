@@ -100,6 +100,8 @@ alias ll='ls -alFG'
 # ------------------------------
 # Other Settings
 # ------------------------------
+# cd時にls
+function chpwd() { ls }
 
 # kubectl があれば補完をロードする
 if [ $commands[kubectl] ]; then
