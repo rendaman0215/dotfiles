@@ -31,6 +31,8 @@ if ! zplug check --verbose; then
         echo; zplug install
     fi
 fi
+# コマンドをリンクして、PATH に追加し、プラグインは読み込む
+zplug load
 
 # ------------------------------
 # General Settings
