@@ -1,3 +1,40 @@
+#------------------------------
+# zplug
+#-----------------------------
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+-
+zplug "b-ryan/powerline-shell"
+zplug 'zsh-users/zsh-syntax-highlighting'
+
+function powerline_precmd() {
+    PS1="$(powerline-shell --shell zsh $?)"
+}
+
+function install_powerline_precmd() {
+  for s in ${precmd_functions[@]}; do
+    if [ "$s" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
+}
+
+if [ "$TERM" != "linux" ]; then
+    install_powerline_precmd
+fi
+
+# 未インストール項目をインストールする
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# コマンドをリンクして、PATH に追加し、プラグインは読み込む
+zplug load --verbose
+
 # ------------------------------
 # General Settings
 # ------------------------------
@@ -17,6 +54,9 @@ function history-all { history -E 1 }
 if [ -e /usr/local/share/zsh-completions ]; then
     fpath=(/usr/local/share/zsh-completions $fpath)
 fi
+
+# 自動 change directory
+setopt auto_cd
 
 # ------------------------------
 # PATH Settings
@@ -44,11 +84,6 @@ fi
 # ------------------------------
 # Look And Feel Settings
 # ------------------------------
-# フォーマット
-PROMPT='
-%*: %c 
-%F{magenta}%B%n%b@localhost%F{magenta}%#%f '
-
 ### Ls Color ###
 # 色の設定
 export LSCOLORS=Exfxcxdxbxegedabagacad
@@ -56,17 +91,6 @@ export LSCOLORS=Exfxcxdxbxegedabagacad
 export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 export ZLS_COLORS=$LS_COLORS
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} # 補完候補に色を付ける
-
-# git 関連
-autoload -Uz vcs_info
-precmd () { vcs_info }
-setopt prompt_subst
-RPROMPT='${vcs_info_msg_0_}'
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
-zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
 
 # "-F":ディレクトリに"/"を表示 / "-G"でディレクトリを色表示
 alias ls='ls -FG'
