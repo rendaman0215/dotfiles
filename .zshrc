@@ -135,7 +135,7 @@ alias repo='cd $(repos)'
 alias github='gh open $(repos)'
 
 # kubectl
-export KUBECONFIG=/Users/rendaman/.kube/config
+export KUBECONFIG=~/.kube/config
 alias k='kubectl'
 alias kg='kubectl get'
 alias kd='kubectl describe'
