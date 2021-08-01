@@ -191,3 +191,6 @@ if [ -f '/Users/rendaman/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/
 
 # Goland Alias
 alias goland='/usr/local/bin/goland'
+
+# Jupyter Notebook
+alias jn='jupyter notebook'
