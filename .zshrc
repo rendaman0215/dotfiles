@@ -194,3 +194,5 @@ alias goland='/usr/local/bin/goland'
 
 # Jupyter Notebook
 alias jn='jupyter notebook'
+
+export PATH="/usr/local/opt/binutils/bin:$PATH
