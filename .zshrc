@@ -189,8 +189,11 @@ if [ -f '/Users/rendaman/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/rendam
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/rendaman/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/rendaman/google-cloud-sdk/completion.zsh.inc'; fi
 
-# Goland Alias
-alias goland='/usr/local/bin/goland'
-
 # Jupyter Notebook
 alias jn='jupyter notebook'
+
+# Open VSCode
+alias vsg='code -n .'
+
+# Reload zshrc
+alias reload='source ~/.zshrc'
