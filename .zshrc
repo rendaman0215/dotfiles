@@ -60,6 +60,7 @@ setopt auto_cd
 # ------------------------------
 # PATH Settings
 # ------------------------------
+export PATH="/usr/local/opt/binutils/bin:$PATH"
 export PATH="/usr/local/Cellar/go@1.13/1.13.15/libexec/bin:$PATH"
 
 if [ -d ~/.rbenv ]; then
