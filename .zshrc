@@ -198,3 +198,6 @@ alias vsg='code -n .'
 
 # Reload zshrc
 alias reload='source ~/.zshrc'
+
+# anyenv
+eval "$(anyenv init -)"
