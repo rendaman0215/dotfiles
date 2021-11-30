@@ -63,16 +63,6 @@ setopt auto_cd
 export PATH="/usr/local/opt/binutils/bin:$PATH"
 export PATH="/usr/local/Cellar/go@1.13/1.13.15/libexec/bin:$PATH"
 
-if [ -d ~/.rbenv ]; then
-    export PATH="$HOME/.rbenv/bin:$PATH"
-    eval "$(rbenv init -)"
-fi
-
-if [ -d ~/.pyenv ]; then
-    export PATH="$HOME/.pyenv/bin:$PATH"
-    eval "$(pyenv init --path)"
-fi
-
 if [ -x "`which go`" ]; then
     mkdir -p $HOME/go/
     export GOROOT=`go env GOROOT`
@@ -80,6 +70,14 @@ if [ -x "`which go`" ]; then
     export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 fi
 
+if [ -e "$HOME/.anyenv" ]; then
+    export ANYENV_ROOT="$HOME/.anyenv"
+    export PATH="$ANYENV_ROOT/bin:$PATH"
+    if command -v anyenv 1>/dev/null 2>&1
+    then
+        eval "$(anyenv init -)"
+    fi
+fi
 
 # ------------------------------
 # Look And Feel Settings
@@ -198,6 +196,3 @@ alias vsg='code -n .'
 
 # Reload zshrc
 alias reload='source ~/.zshrc'
-
-# anyenv
-eval "$(anyenv init -)"
