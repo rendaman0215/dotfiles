@@ -105,11 +105,6 @@ alias ll='ls -alFG'
 # cd時にls
 function chpwd() { ls }
 
-# kubectl があれば補完をロードする
-if [ $commands[kubectl] ]; then
-    source <(kubectl completion zsh)
-fi
-
 ### Aliases ###
 #時刻を表示させる
 alias history='history -E'
@@ -136,13 +131,6 @@ bindkey '^]' ghql
 alias repos='ghq list -p | peco'
 alias repo='cd $(repos)'
 alias github='gh open $(repos)'
-
-# kubectl
-export KUBECONFIG=~/.kube/config
-alias k='kubectl'
-alias kg='kubectl get'
-alias kd='kubectl describe'
-alias krm='kubectl delete'
 
 # oracle
 export ORACLE_HOME=/opt/oracle/instantclient_12_2/
