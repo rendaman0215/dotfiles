@@ -1,7 +1,7 @@
 #------------------------------
 # zplug
 #-----------------------------
-export ZPLUG_HOME=/usr/local/opt/zplug
+export ZPLUG_HOME=/opt/homebrew/opt/zplug
 source $ZPLUG_HOME/init.zsh
 -
 zplug "b-ryan/powerline-shell"
@@ -70,18 +70,6 @@ if [ -e "$HOME/.anyenv" ]; then
         eval "$(anyenv init -)"
     fi
 fi
-
-if [ -d ~/.rbenv ]; then
-    export PATH="$HOME/.rbenv/bin:$PATH"
-    eval "$(rbenv init -)"
-fi
-
-if [ -d ~/.pyenv ]; then
-    export PATH="$HOME/.pyenv/bin:$PATH"
-    eval "$(pyenv init --path)"
-fi
-
-export PATH=$PATH:`npm bin -g`
 
 # ------------------------------
 # Look And Feel Settings
