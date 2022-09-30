@@ -7,5 +7,6 @@ fi
 export PATH=/usr/local/opt/openssl/bin:$PATH
 
 # Set PATH, MANPATH, etc., for Homebrew.
-eval "$(/opt/homebrew/bin/brew shellenv)"
+BREW=`which brew`
+eval "$($BREW shellenv)"
 

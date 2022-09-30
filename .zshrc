@@ -1,7 +1,14 @@
 #------------------------------
 # zplug
 #-----------------------------
-export ZPLUG_HOME=/opt/homebrew/opt/zplug
+if [ -L '/opt/homebrew/opt/zplug' ]; then
+	export ZPLUG_HOME=/opt/homebrew/opt/zplug;
+fi
+
+if [ -L '/usr/local/opt/zplug' ]; then
+	export ZPLUG_HOME=/usr/local/opt/zplug;
+fi
+
 source $ZPLUG_HOME/init.zsh
 -
 zplug "b-ryan/powerline-shell"
