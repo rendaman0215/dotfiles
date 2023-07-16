@@ -98,7 +98,7 @@ alias ll='ls -alFG'
 # Other Settings
 # ------------------------------
 # cd時にls
-function chpwd() { ls }
+function chpwd() { ls | echo -ne "\033]0;$(pwd | rev | awk -F \/ '{print $1}'| rev)\007"}
 
 ### Aliases ###
 #時刻を表示させる
@@ -131,6 +131,8 @@ alias github='gh open $(repos)'
 export ORACLE_HOME=/opt/oracle/instantclient_12_2/
 export PKG_CONFIG_PATH=${ORACLE_HOME}pkgconfig/
 export LD_LIBRARY_PATH=$ORACLE_HOME
+
+
 
 # terraform
 alias tf='terraform'
@@ -169,12 +171,6 @@ alias tfinu='terraform init -upgrade'
 alias tfpde='terraform plan --destroy'
 
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/completion.zsh.inc'; fi
-
 # Jupyter Notebook
 alias jn='jupyter notebook'
 
@@ -183,3 +179,16 @@ alias vsg='code -n .'
 
 # Reload zshrc
 alias reload='source ~/.zshrc'
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/rendaman/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/rendaman/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/rendaman/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/rendaman/google-cloud-sdk/completion.zsh.inc'; fi
+
+export PATH=$HOME/.progate/bin:$PATH
+
+
