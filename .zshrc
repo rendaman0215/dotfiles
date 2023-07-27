@@ -1,6 +1,7 @@
 #------------------------------
 # zplug
 #-----------------------------
+PATH=/opt/homebrew/bin:$PATH
 if [ -L '/opt/homebrew/opt/zplug' ]; then
 	export ZPLUG_HOME=/opt/homebrew/opt/zplug;
 fi
