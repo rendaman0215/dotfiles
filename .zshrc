@@ -107,10 +107,10 @@ alias history='history -E'
 alias vi='vim'
 
 # [docker-compose]
-alias dc='docker-compose'
+alias dc='docker compose'
 
 # ghql
-function ghql() {
+function g() {
   local selected_file=$(ghq list --full-path | peco --query "$LBUFFER")
   if [ -n "$selected_file" ]; then
     if [ -t 1 ]; then
@@ -120,8 +120,8 @@ function ghql() {
 }
 
 # GHQ + PECO をZLEで登録のうえ、キーバインド
-zle -N ghql
-bindkey '^]' ghql
+zle -N g
+bindkey '^]' g
 
 # repo,repos,github をエイリアス
 alias repos='ghq list -p | peco'
@@ -133,7 +133,12 @@ export ORACLE_HOME=/opt/oracle/instantclient_12_2/
 export PKG_CONFIG_PATH=${ORACLE_HOME}pkgconfig/
 export LD_LIBRARY_PATH=$ORACLE_HOME
 
-
+# General
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
+export NLS_LANG=Japanese_Japan.AL32UTF8
+export GPG_TTY=$TTY
 
 # terraform
 alias tf='terraform'
@@ -171,25 +176,14 @@ alias tfdy='terraform destroy -auto-approve'
 alias tfinu='terraform init -upgrade'
 alias tfpde='terraform plan --destroy'
 
-
-# Jupyter Notebook
-alias jn='jupyter notebook'
-
 # Open VSCode
 alias vsg='code -n .'
 
 # Reload zshrc
 alias reload='source ~/.zshrc'
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/rendaman/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/rendaman/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/rendaman/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/rendaman/google-cloud-sdk/completion.zsh.inc'; fi
-
-export PATH=$HOME/.progate/bin:$PATH
-
-
+if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/completion.zsh.inc'; fi
