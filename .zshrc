@@ -1,66 +1,119 @@
-#------------------------------
-# zplug
-#-----------------------------
-PATH=/opt/homebrew/bin:$PATH
-if [ -L '/opt/homebrew/opt/zplug' ]; then
-	export ZPLUG_HOME=/opt/homebrew/opt/zplug;
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-if [ -L '/usr/local/opt/zplug' ]; then
-	export ZPLUG_HOME=/usr/local/opt/zplug;
-fi
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-source $ZPLUG_HOME/init.zsh
--
-zplug "b-ryan/powerline-shell"
-zplug 'zsh-users/zsh-syntax-highlighting'
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
-function powerline_precmd() {
-    PS1="$(powerline-shell --shell zsh $?)"
-}
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time Oh My Zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
-function install_powerline_precmd() {
-  for s in ${precmd_functions[@]}; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-  done
-  precmd_functions+=(powerline_precmd)
-}
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-if [ "$TERM" != "linux" ]; then
-    install_powerline_precmd
-fi
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-# 未インストール項目をインストールする
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-# コマンドをリンクして、PATH に追加し、プラグインは読み込む
-zplug load
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
-# ------------------------------
-# General Settings
-# ------------------------------
-### Complement ###
-autoload -Uz compinit          # 補完機能を有効にする
-compinit
-setopt auto_list               # 補完候補を一覧で表示する(d)
-setopt auto_menu               # 補完キー連打で補完候補を順に表示する(d)
-setopt list_packed             # 補完候補をできるだけ詰めて表示する
-setopt list_types              # 補完候補にファイルの種類も表示する
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' # 補完時に大文字小文字を区別しない
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
-# すべてのヒストリを表示する
-function history-all { history -E 1 }
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
 
-# シェルの補完
-if [ -e /usr/local/share/zsh-completions ]; then
-    fpath=(/usr/local/share/zsh-completions $fpath)
-fi
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git aliases copypath history docker github composer laravel brew zsh-completions zsh-autosuggestions zsh-syntax-highlighting)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='nvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch $(uname -m)"
+
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
 
 # 自動 change directory
 setopt auto_cd
@@ -68,8 +121,6 @@ setopt auto_cd
 # ------------------------------
 # PATH Settings
 # ------------------------------
-export PATH="/usr/local/opt/binutils/bin:$PATH"
-
 if [ -e "$HOME/.anyenv" ]; then
     export ANYENV_ROOT="$HOME/.anyenv"
     export PATH="$ANYENV_ROOT/bin:$PATH"
@@ -79,38 +130,11 @@ if [ -e "$HOME/.anyenv" ]; then
     fi
 fi
 
-# ------------------------------
-# Look And Feel Settings
-# ------------------------------
-### Ls Color ###
-# 色の設定
-export LSCOLORS=Exfxcxdxbxegedabagacad
-# 補完時の色の設定
-export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-export ZLS_COLORS=$LS_COLORS
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS} # 補完候補に色を付ける
-
-# "-F":ディレクトリに"/"を表示 / "-G"でディレクトリを色表示
-alias ls='ls -FG'
-alias ll='ls -alFG'
-
-
-# ------------------------------
-# Other Settings
-# ------------------------------
 # cd時にls
 function chpwd() { ls | echo -ne "\033]0;$(pwd | rev | awk -F \/ '{print $1}'| rev)\007"}
 
-### Aliases ###
-#時刻を表示させる
-alias history='history -E'
-alias vi='vim'
-
-# [docker-compose]
-alias dc='docker compose'
-
 # ghql
-function g() {
+function peco-src() {
   local selected_file=$(ghq list --full-path | peco --query "$LBUFFER")
   if [ -n "$selected_file" ]; then
     if [ -t 1 ]; then
@@ -120,70 +144,23 @@ function g() {
 }
 
 # GHQ + PECO をZLEで登録のうえ、キーバインド
-zle -N g
-bindkey '^]' g
+zle -N peco-src
+bindkey '^]' peco-src
 
-# repo,repos,github をエイリアス
-alias repos='ghq list -p | peco'
-alias repo='cd $(repos)'
-alias github='gh open $(repos)'
 
-# oracle
-export ORACLE_HOME=/opt/oracle/instantclient_12_2/
-export PKG_CONFIG_PATH=${ORACLE_HOME}pkgconfig/
-export LD_LIBRARY_PATH=$ORACLE_HOME
-
-# General
-export VOLTA_HOME="$HOME/.volta"
-export PATH="$VOLTA_HOME/bin:$PATH"
-export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"
-export NLS_LANG=Japanese_Japan.AL32UTF8
+# GPG
 export GPG_TTY=$TTY
 
-# terraform
-alias tf='terraform'
-alias tfa='terraform apply'
-alias tfc='terraform console'
-alias tfd='terraform destroy'
-alias tff='terraform fmt'
-alias tfg='terraform graph'
-alias tfim='terraform import'
-alias tfin='terraform init'
-alias tfo='terraform output'
-alias tfp='terraform plan'
-alias tfpr='terraform providers'
-alias tfr='terraform refresh'
-alias tfsh='terraform show'
-alias tft='terraform taint'
-alias tfut='terraform untaint'
-alias tfv='terraform validate'
-alias tfw='terraform workspace'
-alias tfs='terraform state'
-alias tffu='terraform force-unlock'
-alias tfwst='terraform workspace select'
-alias tfwsw='terraform workspace show'
-alias tfssw='terraform state show'
-alias tfwde='terraform workspace delete'
-alias tfwls='terraform workspace list'
-alias tfsls='terraform state list'
-alias tfwnw='terraform workspace new'
-alias tfsmv='terraform state mv'
-alias tfspl='terraform state pull'
-alias tfsph='terraform state push'
-alias tfsrm='terraform state rm'
-alias tfay='terraform apply -auto-approve'
-alias tfdy='terraform destroy -auto-approve'
-alias tfinu='terraform init -upgrade'
-alias tfpde='terraform plan --destroy'
+# google cloud
+if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/completion.zsh.inc'; fi
 
-# Open VSCode
-alias vsg='code -n .'
+# alias 一覧を読み込む
+source ~/.aliases.sh
 
-# Reload zshrc
-alias reload='source ~/.zshrc'
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/kazuya-saso/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kazuya-saso/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/kazuya-saso/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kazuya-saso/google-cloud-sdk/completion.zsh.inc'; fi
