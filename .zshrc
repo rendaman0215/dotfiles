@@ -166,4 +166,4 @@ tab-color () {                                                                  
 }
 alias luup='tab-color 28 184 176'
 alias ryuzu='tab-color 15 167 252'
-
+alias k8s='tab-color 46 109 230'
