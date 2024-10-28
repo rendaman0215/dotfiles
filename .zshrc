@@ -77,7 +77,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git aliases copypath history docker github composer laravel brew zsh-completions zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git aliases copypath history docker github composer laravel brew)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -158,9 +158,12 @@ if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/co
 # alias 一覧を読み込む
 source ~/.aliases.sh
 
+# tab-color
+tab-color () {                                                                                                                                                             127 ✘  20:54:35
+        echo -ne "\033]6;1;bg;red;brightness;$1\a"
+        echo -ne "\033]6;1;bg;green;brightness;$2\a"
+        echo -ne "\033]6;1;bg;blue;brightness;$3\a"
+}
+alias luup='tab-color 28 184 176'
+alias ryuzu='tab-color 15 167 252'
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/kazuya-saso/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kazuya-saso/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/kazuya-saso/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kazuya-saso/google-cloud-sdk/completion.zsh.inc'; fi
