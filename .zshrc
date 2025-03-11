@@ -143,6 +143,29 @@ function peco-src() {
   fi
 }
 
+# GitHub Branch CheckOut
+function mypr() {
+  local pr_list selected_pr pr_number branch
+
+  # PR一覧を取得（PR番号、タイトル、ブランチ名、作成日）
+  pr_list=$(gh pr list -A @me --json number,title --jq \
+    '.[] | @sh "\(.number) \(.title)"')
+
+  # pecoで選択
+  selected_pr=$(echo -e "$pr_list" | peco --prompt="Select a PR: " | awk '{print $1}')
+
+  # 何も選択されなかった場合は終了
+  [[ -z "$selected_pr" ]] && echo "No PR selected." && return 1
+
+  # チェックアウト
+  gh pr checkout "$selected_pr"
+}
+
+# Lint current repository
+function lint() {
+  go run github.com/google/yamlfmt/cmd/yamlfmt@v0.12.1
+}
+
 # GHQ + PECO をZLEで登録のうえ、キーバインド
 zle -N peco-src
 bindkey '^]' peco-src
@@ -167,3 +190,9 @@ tab-color () {                                                                  
 alias luup='tab-color 28 184 176'
 alias ryuzu='tab-color 15 167 252'
 alias k8s='tab-color 46 109 230'
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/kazuya.saso/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kazuya.saso/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/kazuya.saso/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kazuya.saso/google-cloud-sdk/completion.zsh.inc'; fi
