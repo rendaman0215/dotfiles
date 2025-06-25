@@ -161,6 +161,14 @@ function mypr() {
   gh pr checkout "$selected_pr"
 }
 
+function kb() {
+  kubens "$(kubens | peco)"
+}
+
+function kc() {
+  kubectx "$(kubectx | peco)"
+}
+
 # Lint current repository
 function lint() {
   go run github.com/google/yamlfmt/cmd/yamlfmt@v0.12.1
@@ -187,9 +195,6 @@ tab-color () {                                                                  
         echo -ne "\033]6;1;bg;green;brightness;$2\a"
         echo -ne "\033]6;1;bg;blue;brightness;$3\a"
 }
-alias luup='tab-color 28 184 176'
-alias ryuzu='tab-color 15 167 252'
-alias k8s='tab-color 46 109 230'
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/kazuya.saso/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kazuya.saso/google-cloud-sdk/path.zsh.inc'; fi
