@@ -121,14 +121,6 @@ setopt auto_cd
 # ------------------------------
 # PATH Settings
 # ------------------------------
-if [ -e "$HOME/.anyenv" ]; then
-    export ANYENV_ROOT="$HOME/.anyenv"
-    export PATH="$ANYENV_ROOT/bin:$PATH"
-    if command -v anyenv 1>/dev/null 2>&1
-    then
-        eval "$(anyenv init -)"
-    fi
-fi
 
 # cd時にls
 function chpwd() { ls | echo -ne "\033]0;$(pwd | rev | awk -F \/ '{print $1}'| rev)\007"}
@@ -169,35 +161,27 @@ function kc() {
   kubectx "$(kubectx | peco)"
 }
 
-# Lint current repository
-function lint() {
-  go run github.com/google/yamlfmt/cmd/yamlfmt@v0.12.1
-}
-
 # GHQ + PECO をZLEで登録のうえ、キーバインド
 zle -N peco-src
 bindkey '^]' peco-src
 
-
 # GPG
 export GPG_TTY=$TTY
 
-# google cloud
-if [ -f '~/google-cloud-sdk/path.zsh.inc' ]; then . '~/google-cloud-sdk/path.zsh.inc'; fi
-if [ -f '~/google-cloud-sdk/completion.zsh.inc' ]; then . '~/google-cloud-sdk/completion.zsh.inc'; fi
-
 # alias 一覧を読み込む
-source ~/.aliases.sh
-
-# tab-color
-tab-color () {                                                                                                                                                             127 ✘  20:54:35
-        echo -ne "\033]6;1;bg;red;brightness;$1\a"
-        echo -ne "\033]6;1;bg;green;brightness;$2\a"
-        echo -ne "\033]6;1;bg;blue;brightness;$3\a"
-}
+[[ -r ~/.aliases.sh ]] && source ~/.aliases.sh
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/kazuya.saso/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/kazuya.saso/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "${HOME}/google-cloud-sdk/path.zsh.inc" ]; then . "${HOME}/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/kazuya.saso/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/kazuya.saso/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "${HOME}/google-cloud-sdk/completion.zsh.inc" ]; then . "${HOME}/google-cloud-sdk/completion.zsh.inc"; fi
+
+# pnpm
+export PNPM_HOME="/Users/rendaman/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+eval "$(mise activate zsh)"

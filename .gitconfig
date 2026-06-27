@@ -1,6 +1,8 @@
 [user]
 	name = Kazuya Saso
 	email = kazsan0215@gmail.com
+	signingkey = D9F1A9F1EAFF76DF
+	siginingkey = D9F1A9F1EAFF76DF
 [color]
 	ui = auto
 [alias]
@@ -18,3 +20,8 @@
 	compactionHeuristic = true
 [ghq]
 	root = ~/go/src
+
+[commit]
+	gpgsign = true
+[init]
+	defaultBranch = main
