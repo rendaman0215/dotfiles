@@ -185,3 +185,23 @@ case ":$PATH:" in
 esac
 # pnpm end
 eval "$(mise activate zsh)"
+
+# Shell navigation and interactive search
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+  alias j='z'
+  alias ji='zi'
+fi
+
+if [[ -t 0 && -t 1 ]]; then
+  [[ -r /opt/homebrew/opt/fzf/shell/completion.zsh ]] &&
+    source /opt/homebrew/opt/fzf/shell/completion.zsh
+  [[ -r /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]] &&
+    source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+fi
+
+# Keep these near the end. syntax-highlighting should be sourced last.
+[[ -r /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]] &&
+  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ -r /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] &&
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
